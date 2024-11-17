@@ -1,5 +1,6 @@
 module DyMat
 
-# Write your package code here.
+export strMatNormal, strMatTrans, copysign
+include("functions.jl")
 
 end

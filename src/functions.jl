@@ -27,14 +27,16 @@ function DyMatFile(fileName::String)
     _vars = Dict{String,Tuple{String,Int,Int,Float64}}()
     _blocks = Int[]
     _absc = ("", "")
-    try
+    fileInfo = strMatNormal(mat["Aclass"])
+    # try catch causes some error. Need to fix.
+    #= try
         fileInfo = strMatNormal(mat["Aclass"])
     catch e
         throw("File structure not supported!")
-    end
+    end =#
 
-    if fileInfo[2] in ["1.1", "1.1\0"]
-        if fileInfo[4] in ["binTrans", "binTrans\0"]
+    if fileInfo[2][begin:3] in ["1.1"]
+        if fileInfo[4][begin:8] in ["binTrans"]
             names = strMatTrans(mat["name"])
             descr = strMatTrans(mat["description"])
             for i in eachindex(names)
@@ -51,7 +53,7 @@ function DyMatFile(fileName::String)
                     _absc = (names[i], descr[i])
                 end
             end
-        elseif fileInfo[4] in ["binNormal", "binNormal\0"]
+        elseif fileInfo[4][begin:9] in ["binNormal"]
             names = strMatNormal(mat["name"])
             descr = strMatNormal(mat["description"])
             for i in eachindex(names)
@@ -73,7 +75,7 @@ function DyMatFile(fileName::String)
         else
             throw("File structure not supported!")
         end
-    elseif fileInfo[2] == "1.0"
+    elseif fileInfo[2][begin:3] in ["1.0"]
         names = strMatNormal(mat["names"])
         push!(_blocks, 0)
         mat["data_0"] = transpose(mat["data"])

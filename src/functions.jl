@@ -132,7 +132,7 @@ function sharedData(d::DyMatFile, varName::String)
     return [(n, v[4] * sign) for (n, v) in d._vars if n != varName && v[2] == block && v[3] == col]
 end
 
-function size(d::DyMatFile, blockOrName::Union{Int,String})
+function getSize(d::DyMatFile, blockOrName::Union{Int,String})
     block = try
         Int(blockOrName)
     catch

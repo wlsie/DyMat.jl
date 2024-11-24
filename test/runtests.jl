@@ -17,6 +17,9 @@ using Test
     #shared data
     @test sharedData(DyMatFile("DoublePendulum_Dymola-7.4.mat"),"revolute1.w") == [("damper.w_rel", 1.0); ("damper.der(phi_rel)", 1.0)]
     #abscissa
-    @test length(abscissa(DyMatFile("DoublePendulum_Dymola-7.4.mat"),"revolute1.w")[1]) == 502 
+    @test length(abscissa(DyMatFile("DoublePendulum_Dymola-7.4.mat"),"revolute1.w")[1]) == 502
+    #getVarArray with no time
+    getVarArray(DyMatFile("DoublePendulum_Dymola-2012-SaveAsPlotted.mat"),["revolute1.w"; "revolute2.w"],false)[:,end] == [11.407309532165527;34.060211181640625]
+    getVarArray(DyMatFile("DoublePendulum_Dymola-2012-SaveAsPlotted.mat"),["revolute1.w"; "revolute2.w"],true)[:,end] == [3.0; 11.407309532165527;34.060211181640625]
 end
 

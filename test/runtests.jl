@@ -21,5 +21,6 @@ using Test
     #getVarArray with no time
     getVarArray(DyMatFile("DoublePendulum_Dymola-2012-SaveAsPlotted.mat"),["revolute1.w"; "revolute2.w"],false)[:,end] == [11.407309532165527;34.060211181640625]
     getVarArray(DyMatFile("DoublePendulum_Dymola-2012-SaveAsPlotted.mat"),["revolute1.w"; "revolute2.w"],true)[:,end] == [3.0; 11.407309532165527;34.060211181640625]
+    #end tests
 end
 

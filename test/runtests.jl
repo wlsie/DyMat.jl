@@ -15,6 +15,8 @@ using Test
     #description
     @test description(DyMatFile("DoublePendulum_Dymola-7.4.mat"),"revolute1.w") == "First derivative of angle phi (relative angular velocity) [rad/s]"
     #shared data
-    sharedData(DyMatFile("DoublePendulum_Dymola-7.4.mat"),"revolute1.w") == [("damper.w_rel", 1.0) ("damper.der(phi_rel)", 1.0)]
+    @test sharedData(DyMatFile("DoublePendulum_Dymola-7.4.mat"),"revolute1.w") == [("damper.w_rel", 1.0); ("damper.der(phi_rel)", 1.0)]
+    #abscissa
+    @test length(abscissa(DyMatFile("DoublePendulum_Dymola-7.4.mat"),"revolute1.w")[1]) == 502 
 end
 

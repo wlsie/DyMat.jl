@@ -1,7 +1,7 @@
 name = "DyMat"
 uuid = "6c8d767c-9b47-4194-a872-a6be4481ec04"
 authors = ["Rohit-Dhumane"]
-version = "1.0.0-DEV"
+version = "1.0.1"
 
 [deps]
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
